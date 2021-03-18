@@ -16,7 +16,7 @@ database::~database()
 }
 
 /**
- * Methode open file form dtb folder
+ * Method open file form dtb folder
  * @return true if the file opened correctly
  */
 bool database::open()
@@ -53,7 +53,7 @@ bool database::eof()
 }
 
 /**
- * Methode get 2 complex number and operator form file
+ * Method get 2 complex number and operator form file
  * @return true if everything goes fine
  */
 bool database::next_equation()
@@ -116,7 +116,7 @@ bool database::print_equation()
 }
 
 /**
- * Methode calculate with the operator form file.
+ * Method calculate with the operator form file.
  * Returns first complex form equation if we divide by zero
  * @return complex number after calculate with the operator
  */

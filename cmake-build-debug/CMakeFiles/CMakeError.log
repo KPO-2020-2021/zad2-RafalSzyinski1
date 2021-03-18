@@ -1,0 +1,15 @@
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: C:/Users/rafik/reposPO/zad2-RafalSzyinski1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):nmake /nologo cmTC_d80a2\fast && 	"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_d80a2.dir\build.make /nologo -L                  CMakeFiles\cmTC_d80a2.dir\build
+Building C object CMakeFiles/cmTC_d80a2.dir/CheckIncludeFile.c.obj
+	C:\PROGRA~2\MICROS~1\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\rafik\AppData\Local\Temp\nmD564.tmp
+CheckIncludeFile.c
+C:\Users\rafik\reposPO\zad2-RafalSzyinski1\cmake-build-debug\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: Nie można otworzyć pliku dołącz: 'pthread.h': No such file or directory
+NMAKE : fatal error U1077: äC:\PROGRA~2\MICROS~1\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exeö: kod powrotu ä0x2ö
+Stop.
+NMAKE : fatal error U1077: ä"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"ö: kod powrotu ä0x2ö
+Stop.
+
+
+
