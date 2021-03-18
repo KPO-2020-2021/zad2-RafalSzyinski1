@@ -1,5 +1,0 @@
-"B:\Program Files\CLion 211.5787.12\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" C:\Users\rafik\reposPO\zad2-RafalSzyinski1
--- Could NOT find Python (missing: Python_EXECUTABLE Interpreter) 
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/rafik/reposPO/zad2-RafalSzyinski1/cmake-build-debug
