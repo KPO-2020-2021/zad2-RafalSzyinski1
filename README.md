@@ -51,7 +51,7 @@ Strumienie obsługują wyjątkowe przypadki takie jak:
 * gdy real = 0 i imag != {-1, 0, 1} (przykład: (-3.123i))
 * przypadek standardowy (przykład: (-123.123 + 321.321i))
 
-###Klasa database
+### Klasa database
 Klasa automatycznie otwiera i czyta wyrażenia urojone z plików.\
 Klasa przy wczytywaniu sprawdza poprawność wyrażeń i razie błędu wypisuje błąd na 'stderr'.
 
