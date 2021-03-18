@@ -43,6 +43,10 @@ int main(int argc, char* argv[])
             {
                 std::cout << e.what() << std::endl;
                 std::cout << "Try again" << std::endl;
+                
+                while (std::cin.get() != '\n')
+                    continue;
+                
                 continue;
             }
 
