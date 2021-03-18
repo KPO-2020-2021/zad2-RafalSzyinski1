@@ -1,3 +1,2 @@
-*.o # ignoruje pliki z rozszerzeniem .o
-tests/bin/* # ignoruje pliki binarne testów
-test_arytm_zesp # ignoruje plik binarny programu
+./cmake-build-debug/
+./.idea/

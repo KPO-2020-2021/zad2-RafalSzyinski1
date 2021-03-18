@@ -1,46 +1,65 @@
-#include <iostream>
-#include "BazaTestu.hh"
+#include "complex.h"
+#include "database.h"
 
-using namespace std;
-
-
-
-
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
+    if (argc != 2)
+    {
+        std::cout << "Open program with flag (trudny | latwy)" << std::endl;
+        std::cout << "Example: " << argv[0] << " latwy" << std::endl;
 
-  if (argc < 2) {
-    cout << endl;
-    cout << " Brak opcji okreslajacej rodzaj testu." << endl;
-    cout << " Dopuszczalne nazwy to:  latwy, trudny." << endl;
-    cout << endl;
-    return 1;
-  }
+        return -1;
+    }
+
+    std::string diff = argv[1];
+    database db(diff);
+
+    if (!db.is_open())
+    {
+        std::cerr << "Can't open file" << std::endl;
+        return -1;
+    }
+
+    while(!db.eof())
+    {
+        if (!db.next_equation())
+            continue;
 
 
-  BazaTestu   BazaT = { nullptr, 0, 0 };
+        db.print_equation();
+        complex<double> answer = db.get_answer();
+        complex<double> user_answer;
 
-  if (InicjalizujTest(&BazaT,argv[1]) == false) {
-    cerr << " Inicjalizacja testu nie powiodla sie." << endl;
-    return 1;
-  }
+        int i;
+        for (i = 1; i < 4; ++i)
+        {
+            std::cout << "Give the answer " << i << ": ";
 
+            try
+            {
+                std::cin >> user_answer;
 
-  
-  cout << endl;
-  cout << " Start testu arytmetyki zespolonej: " << argv[1] << endl;
-  cout << endl;
+            }
+            catch (std::exception& e)
+            {
+                std::cout << e.what() << std::endl;
+                std::cout << "Try again" << std::endl;
 
-  WyrazenieZesp   WyrZ_PytanieTestowe;
-  
-  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
-    cout << " Czesc rzeczywista pierwszego argumentu: ";
-    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
-  }
+                std::cin.clear();
+                while (std::cin.get() != '\n')
+                    continue;
 
-  
-  cout << endl;
-  cout << " Koniec testu" << endl;
-  cout << endl;
+                continue;
+            }
 
+            break;
+        }
+
+        if (user_answer == answer)
+            std::cout << "Good answer" << std::endl;
+        else
+            std::cout << "Wrong answer. Correct: " << answer << std::endl;
+    }
+
+    return 0;
 }

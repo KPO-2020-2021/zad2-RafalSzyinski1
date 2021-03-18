@@ -1,0 +1,5 @@
+Katalog ten zawiera przykladowe pliki z zawartoscia testu dla wersji
+latwej (plik latwe.dat) oraz trudnej (plik trudne.dat).
+Przeznaczone sa one dla rozszerzonej wersji zadania.
+Pliki te zawieraja bledy zapisu niektorych wyrazen.
+Program powinien wykryc wspomniane bledy i pominac tego typu wyrazenia.
