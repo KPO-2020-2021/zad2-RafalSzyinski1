@@ -37,9 +37,6 @@ Po którym odpaleniu ma pokazać poprawność 14 testów i ogólną oceną:
 ### Klasa complex
 Została napisana jako szablon klasy co wymusza przetrzymywanie definicji i deklaracji w jednym pliku.
 
-#### round_complex
-Są to dwie przeciążone metody statyczne służące do zaokrąglania liczb prostych oraz liczb zespolonych do 4 miejsc po przecinku.
-
 #### istream & ostream
 Strumienie obsługują wyjątkowe przypadki takie jak:
 
