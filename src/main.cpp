@@ -25,10 +25,10 @@ int main(int argc, char* argv[])
         if (!db.next_equation())
             continue;
 
-        complex<double> answer = db.get_answer();
-        complex<double> user_answer;
 
         db.print_equation();
+        complex<double> answer = db.get_answer();
+        complex<double> user_answer;
 
         int i;
         for (i = 1; i < 4; ++i)
@@ -38,15 +38,17 @@ int main(int argc, char* argv[])
             try
             {
                 std::cin >> user_answer;
+
             }
             catch (std::exception& e)
             {
                 std::cout << e.what() << std::endl;
                 std::cout << "Try again" << std::endl;
-                
+
+                std::cin.clear();
                 while (std::cin.get() != '\n')
                     continue;
-                
+
                 continue;
             }
 

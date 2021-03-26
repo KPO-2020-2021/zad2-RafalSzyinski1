@@ -6,7 +6,7 @@
 #include <string>
 #include <sstream>
 
-#define DEC_PLACE 4
+#define DEC_PLACE 3
 
 template<typename T>
 class complex
@@ -19,9 +19,6 @@ public:
     complex();
     explicit complex(T rel_);
     complex(T rel_, T img_);
-
-    static constexpr complex<T> round_complex(complex<T> number);
-    static constexpr T round_complex(T number);
 
     T real() const;
     T imag() const;
@@ -43,27 +40,6 @@ public:
     template<typename U>
     friend std::istream& operator>>(std::istream& is, complex<U>& cm);
 };
-
-/**
- * @param number complex number
- * @return complex number round to DEC_PLACE after the decimal point
- */
-
-template<typename T>
-constexpr complex<T> complex<T>::round_complex(complex<T> number)
-{
-    return complex<T>(round_complex(number.rel), round_complex(number.img));
-}
-
-/**
- * @param number simple type number
- * @return simple type number round to DEC_PLACE after the decimal point
- */
-template<typename T>
-constexpr T complex<T>::round_complex(T number)
-{
-    return std::round(number * std::pow(10, DEC_PLACE)) / std::pow(10, DEC_PLACE);
-}
 
 template<typename T>
 complex<T>::complex() : rel(0), img(0)
@@ -104,7 +80,7 @@ T complex<T>::imag() const
 template<typename T>
 constexpr double complex<T>::abs() const
 {
-    return complex<T>::round_complex(std::sqrt((rel * rel) + (img * img)));
+    return std::sqrt((rel * rel) + (img * img));
 }
 
 /**
@@ -120,14 +96,14 @@ template<typename T>
 constexpr complex<T> complex<T>::operator+(const complex<T>& cm) const
 {
     complex<T> ret(rel + cm.rel, img + cm.img);
-    return complex<T>::round_complex(ret);
+    return ret;
 }
 
 template<typename T>
 constexpr complex<T> complex<T>::operator-(const complex<T>& cm) const
 {
     complex<T> ret(rel - cm.rel, img - cm.img);
-    return complex<T>::round_complex(ret);
+    return ret;
 }
 
 template<typename T>
@@ -140,14 +116,14 @@ constexpr complex<T> complex<T>::operator*(const complex<T>& cm) const
     i += cm.img * rel;
 
     complex<T> ret(r, i);
-    return complex<T>::round_complex(ret);
+    return ret;
 }
 
 template<typename T>
 constexpr complex<T> complex<T>::operator/(const complex<T>& cm) const
 {
     complex<T> ret = (*this * cm.conj()) / (cm.abs() * cm.abs());
-    return complex<T>::round_complex(ret);
+    return ret;
 }
 
 template<typename T>
@@ -157,13 +133,13 @@ constexpr complex<T> complex<T>::operator/(const T& val) const
         throw std::runtime_error("Div by 0");
 
     complex<T> ret(rel / val, img / val);
-    return complex<T>::round_complex(ret);
+    return ret;
 }
 
 template<typename T>
 constexpr bool operator==(const complex<T>& a, const complex<T>& b)
 {
-    if (a.rel == b.rel && a.img == b.img)
+    if (std::abs(a.rel-b.rel) <= std::pow(10, -DEC_PLACE) && std::abs(a.img-b.img) <= std::pow(10, -DEC_PLACE))
         return true;
     return false;
 }
@@ -255,7 +231,7 @@ std::istream& operator>>(std::istream& ist, complex<T>& cm)
 
     if (checkChar == ')')
     {
-        cm.rel = complex<T>::round_complex(first);
+        cm.rel = first;
         cm.img = 0;
 
         if (fba != '(')
@@ -266,7 +242,7 @@ std::istream& operator>>(std::istream& ist, complex<T>& cm)
     else if (checkChar == 'i')
     {
         cm.rel = 0;
-        cm.img = complex<T>::round_complex(first);
+        cm.img = first;
 
         is >> lba;
         if (fba != '(' || lba != ')')
@@ -280,7 +256,7 @@ std::istream& operator>>(std::istream& ist, complex<T>& cm)
         if (i == 'i')
         {
             is >> lba;
-            cm.rel = complex<T>::round_complex(first);
+            cm.rel = first;
             if (checkChar == '-')
                 cm.img = -1;
             else
@@ -301,8 +277,8 @@ std::istream& operator>>(std::istream& ist, complex<T>& cm)
         if (lba != ')' || fba != '(' || i != 'i')
             throw std::invalid_argument("Bad complex form");
 
-        cm.rel = complex<T>::round_complex(first);
-        cm.img = complex<T>::round_complex(last);
+        cm.rel = first;
+        cm.img = last;
 
         return ist;
     }

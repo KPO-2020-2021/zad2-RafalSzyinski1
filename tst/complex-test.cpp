@@ -243,28 +243,17 @@ TEST (complex_test, double_test)
     complex<double> a(3.123, 5.321);
     complex<double> b(-5.321, -3.123);
 
-    EXPECT_DOUBLE_EQ((a + b).imag(), complex<double>(-2.198, 2.198).imag());
-    EXPECT_DOUBLE_EQ((a + b).real(), complex<double>(-2.198, 2.198).real());
-
-    EXPECT_DOUBLE_EQ((a - b).imag(), complex<double>(8.444, 8.444).imag());
-    EXPECT_DOUBLE_EQ((a - b).real(), complex<double>(8.444, 8.444).real());
-
-    EXPECT_DOUBLE_EQ((a * b).imag(), complex<double>(0, -38.0662).imag());
-    EXPECT_DOUBLE_EQ((a * b).real(), complex<double>(0, -38.0662).real());
-
-
-    EXPECT_DOUBLE_EQ((a / b).imag(), complex<double>(-0.8731, -0.4876).imag());
-    EXPECT_DOUBLE_EQ((a / b).real(), complex<double>(-0.8731, -0.4876).real());
+    EXPECT_EQ((a + b), complex<double>(-2.198, 2.198));
+    EXPECT_EQ((a - b), complex<double>(8.444, 8.444));
+    EXPECT_EQ((a * b), complex<double>(0, -38.066));
+    EXPECT_EQ((a / b), complex<double>(-0.873, -0.487));
 }
 
-TEST (complex_test, round_complex)
+TEST (complex_test, round_compare_complex)
 {
-    double a = complex<double>::round_complex(4.312312332);
-    EXPECT_DOUBLE_EQ(a, 4.3123);
-
     complex<double> b(1.1111111111111111111111111111, 1.11111111111111111111111111);
-    EXPECT_EQ(complex<double>::round_complex(b), complex<double>(1.1111, 1.1111));
+    EXPECT_EQ(b, complex<double>(1.1111, 1.1111));
 
     complex<double> c(111111111111111111111111.1111111111111111111, 111111111111111111111.111111111111111111111);
-    EXPECT_EQ(complex<double>::round_complex(c), complex<double>(111111111111111111111111.1111, 111111111111111111111.1111));
+    EXPECT_EQ(c, complex<double>(111111111111111111111111.1111, 111111111111111111111.1111));
 }
